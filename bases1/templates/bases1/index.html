@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Control Musical</title>
+      <link rel="stylesheet" href="{% static 'bases1/css/estilos.css' %}">
+</head>
+<body>
+    <h1>Control Maestro de Catálogo Musical</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- TABLA DE MÚSICOS -->
+    <div class="seccion">
+        <h2>Listado de Músicos</h2>
+        <a href="{% url 'crear_musico' %}" class="btn btn-crear">+ Registrar Músico</a>
+        <table class="tabla-musical">
+            <thead>
+                <tr>
+                    <th>Artista</th>
+                    <th>Fechas</th>
+                    <th>Género Principal (Banda)</th>
+                    <th>Tema Recomendado (YouTube)</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in musicos_con_videos %}
+                <tr>
+                    <td><strong>{{ item.objeto.nombre }} {{ item.objeto.apellido }}</strong></td>
+                    <td>{{ item.objeto.fecha_nacimiento|date:"Y" }} {% if item.objeto.fecha_fallecimiento %}- {{ item.objeto.fecha_fallecimiento|date:"Y" }}{% else %}(Activo){% endif %}</td>
+                    <td>{{ item.objeto.genero_principal.nombre_de_la_musica|default:"Sin asignar" }} ({{ item.objeto.genero_principal.banda_de_musica|default:"-" }})</td>
+                    <td>
+                        {% if item.enlace_video != "#" %}
+                            <a href="{{ item.enlace_video }}" target="_blank" style="color: #ef4444; font-weight: bold; text-decoration: none; display: inline-flex; align-items: center;">
+                                Reproducir "{{ item.nombre_cancion }}"
+                            </a>
+                        {% else %}
+                            <span style="color: #64748b; font-style: italic;">No disponible</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ item.objeto.descripcion|truncatewords:8 }}</td>
+                    <td>
+                        <a href="{% url 'editar_musico' item.objeto.pk %}" class="btn btn-editar">Editar</a>
+                        <a href="{% url 'eliminar_musico' item.objeto.pk %}" class="btn btn-eliminar">Borrar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="6">No hay músicos registrados.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TABLA DE GÉNEROS -->
+    <div class="seccion">
+        <h2>Álbumes / Tipos de Música</h2>
+        <a href="{% url 'crear_genero' %}" class="btn btn-crear">+ Registrar Música/Género</a>
+        <table class="tabla-musical">
+            <thead>
+                <tr>
+                    <th>Nombre de la Música</th>
+                    <th>Género / Tipo</th>
+                    <th>Banda / Agrupación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for g in generos %}
+                <tr>
+                    <td>{{ g.nombre_de_la_musica }}</td>
+                    <td>{{ g.tipo_de_musica }}</td>
+                    <td>{{ g.banda_de_musica }}</td>
+                    <td>
+                        <a href="{% url 'editar_genero' g.pk %}" class="btn btn-warning btn-editar">Editar</a>
+                        <a href="{% url 'eliminar_genero' g.pk %}" class="btn btn-eliminar">Borrar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">No hay tipos de música registrados.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TABLA DE INSTRUMENTOS -->
+    <div class="seccion">
+        <h2>Instrumentos Disponibles</h2>
+        <a href="{% url 'crear_instrumento' %}" class="btn btn-crear">+ Registrar Instrumento</a>
+        <table class="tabla-musical">
+            <thead>
+                <tr>
+                    <th>Instrumento</th>
+                    <th>Familia / Tipo</th>
+                    <th>Intérpretes Vinculados</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in instrumentos %}
+                <tr>
+                    <td>{{ i.nombre_del_instrumento }}</td>
+                    <td>{{ i.tipo_de_instrumento }}</td>
+                    <td>
+                        {% for m in i.musicos.all %}
+                            <span class="badge-tag">{{ m.nombre }} {{ m.apellido }}</span>
+                        {% empty %}
+                            <em style="color: #94a3b8;">Ninguno</em>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{% url 'editar_instrumento' i.pk %}" class="btn btn-warning btn-editar">Editar</a>
+                        <a href="{% url 'eliminar_instrumento' i.pk %}" class="btn btn-eliminar">Borrar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">No hay instrumentos registrados.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

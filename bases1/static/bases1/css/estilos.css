@@ -1,0 +1,252 @@
+/* --- CONFIGURACIÓN GENERAL --- */
+** {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    /* Agregamos !important al final del background para forzar al navegador a mostrarlo */
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #2e104d 100%) !important;
+    background-attachment: fixed !important; 
+    color: #f8fafc !important; 
+    line-height: 1.6;
+    padding: 40px 20px;
+}
+
+h1 {
+    color: #ffffff;
+    margin-bottom: 25px;
+    font-size: 32px;
+    border-bottom: 3px solid #a855f7; /* Línea de división color púrpura neón */
+    padding-bottom: 10px;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    color: #f1f5f9;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+p {
+    margin-bottom: 15px;
+    color: #cbd5e1;
+}
+
+/* --- BOTONES MODERNOS --- */
+.btn {
+    display: inline-block;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.btn:active {
+    transform: scale(0.96);
+}
+
+.btn-crear {
+    background-color: #3b82f6;
+    color: white;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+}
+
+.btn-crear:hover {
+    background-color: #2563eb;
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+}
+
+.btn-editar {
+    background-color: #eab308;
+    color: #1e293b;
+    margin-right: 5px;
+}
+
+.btn-editar:hover {
+    background-color: #ca8a04;
+}
+
+.btn-eliminar {
+    background-color: #ef4444;
+    color: white;
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
+}
+
+.btn-eliminar:hover {
+    background-color: #dc2626;
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.5);
+}
+
+.btn-cancelar {
+    background-color: #475569;
+    color: white;
+    margin-left: 10px;
+}
+
+.btn-cancelar:hover {
+    background-color: #334155;
+}
+
+/* --- TABLAS PRINCIPALES (index.html) --- */
+.seccion {
+    /* Efecto cristal translúcido (Glassmorphism) */
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 24px;
+    margin-bottom: 35px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.tabla-musical {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: rgba(15, 23, 42, 0.6); /* Fondo oscuro interno para las celdas */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.tabla-musical th, 
+.tabla-musical td {
+    padding: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: left;
+}
+
+.tabla-musical th {
+    background-color: rgba(139, 92, 246, 0.85); /* Violeta musical para los encabezados */
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+}
+
+.tabla-musical td {
+    color: #e2e8f0;
+}
+
+.tabla-musical tr:hover {
+    background-color: rgba(255, 255, 255, 0.05); /* Brillo sutil al pasar el cursor */
+}
+
+.badge-tag {
+    background-color: rgba(99, 102, 241, 0.25);
+    color: #e0e7ff;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 4px;
+    display: inline-block;
+    border: 1px solid rgba(99, 102, 241, 0.4);
+}
+
+/* --- MENSAJES DE ALERTA --- */
+.alert {
+    padding: 14px;
+    background-color: rgba(22, 163, 74, 0.2);
+    color: #4ade80;
+    border-left: 5px solid #22c55e;
+    margin-bottom: 25px;
+    border-radius: 6px;
+    font-weight: 600;
+    backdrop-filter: blur(4px);
+}
+
+/* --- FORMULARIOS (Crear y Editar) --- */
+.contenedor-formulario {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 35px;
+    max-width: 600px;
+    margin: 20px auto;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.contenedor-formulario h1 {
+    font-size: 26px;
+    border-bottom: 2px solid #8b5cf6;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background-color: rgba(30, 41, 59, 0.7);
+    color: #ffffff;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: #a855f7;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.3);
+    background-color: rgba(30, 41, 59, 0.9);
+}
+
+/* Ajuste específico para cajas de selección que no contrastaban en la captura anterior */
+select.form-control option {
+    background-color: #1e1b4b;
+    color: #ffffff;
+}
+
+select[multiple].form-control {
+    height: 140px;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 110px;
+}
+
+/* --- VISTA ELIMINAR --- */
+.panel-eliminar {
+    max-width: 500px;
+    margin: 80px auto;
+    text-align: center;
+    padding: 40px 30px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(16px);
+    border-radius: 16px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-top: 5px solid #ef4444;
+}
+
+.panel-eliminar h1 {
+    border: none;
+    color: #f87171;
+    font-size: 26px;
+    text-shadow: none;
+}

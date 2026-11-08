@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><title>Editar Músico</title>
+    <link rel="stylesheet" href="{% static 'bases1/css/estilos.css' %}">
+</head>
+<body>
+    <div class="contenedor-formulario">
+        <h1>Editar Datos de {{ musico.nombre }} {{ musico.apellido }}</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" name="nombre" value="{{ musico.nombre }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Apellido</label>
+                <input type="text" name="apellido" value="{{ musico.apellido }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Fecha de Nacimiento</label>
+                <input type="date" name="fecha_nacimiento" value="{{ musico.fecha_nacimiento|date:'Y-m-d' }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Fecha de Fallecimiento</label>
+                <input type="date" name="fecha_fallecimiento" value="{{ musico.fecha_fallecimiento|date:'Y-m-d' }}" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Tema / Género Principal</label>
+                <select name="genero_principal" class="form-control">
+                    <option value="">---------</option>
+                    {% for g in generos %}
+                        <option value="{{ g.id }}" {% if musico.genero_principal.id == g.id %}selected{% endif %}>
+                            {{ g.nombre_de_la_musica }} ({{ g.banda_de_musica }})
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea name="descripcion" class="form-control" rows="4">{{ musico.descripcion }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-editar">Actualizar Cambios</button>
+            <a href="{% url 'bases1' %}" class="btn btn-cancelar">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

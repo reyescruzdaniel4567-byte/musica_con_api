@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><title>Registrar Instrumento</title>
+    <link rel="stylesheet" href="{% static 'bases1/css/estilos.css' %}">
+</head>
+<body>
+    <div class="contenedor-formulario">
+        <h1>Registrar Nuevo Instrumento</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Nombre del Instrumento *</label>
+                <input type="text" name="nombre_del_instrumento" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Familia / Tipo (Ej: Cuerda, Viento) *</label>
+                <input type="text" name="tipo_de_instrumento" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Músicos que lo ejecutan (Usa Ctrl para elegir varios)</label>
+                <select name="musicos" class="form-control" multiple>
+                    {% for m in musicos %}
+                        <option value="{{ m.id }}">{{ m.nombre }} {{ m.apellido }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Descripción / Características</label>
+                <textarea name="descripcion" class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-crear">Guardar Instrumento</button>
+            <a href="{% url 'bases1' %}" class="btn btn-cancelar">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

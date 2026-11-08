@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><title>Confirmar Borrado</title>
+    <link rel="stylesheet" href="{% static 'bases1/css/estilos.css' %}">
+</head>
+<body>
+    <div class="panel-eliminar">
+        <h1>¿Estás completamente seguro?</h1>
+        <p>Vas a eliminar de forma permanente el/la {{ tipo }}:</p>
+        <p style="font-size: 20px; margin: 15px 0; color: #ffffff;"><strong>{{ objeto }}</strong></p>
+        <p style="color: #cbd5e1; font-size: 14px; margin-bottom: 25px;">Esta acción no se puede deshacer en tu base de datos.</p>
+        
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-eliminar">Sí, Eliminar Registro</button>
+            <a href="{% url 'bases1' %}" class="btn btn-cancelar">No, Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

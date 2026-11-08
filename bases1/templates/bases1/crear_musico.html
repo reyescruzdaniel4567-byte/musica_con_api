@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Formulario</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+    <div class="contenedor-formulario">
+        <h1>Nuevo Registro</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Nombre del Campo:</label>
+                <input type="text" name="..." class="form-control" required>
+            </div>
+            
+            <button type="submit" class="btn btn-crear">Guardar Datos</button>
+           <a href="{% url 'home' %}" class="btn btn-cancelar">Volver</a>
+        </form>
+    </div>
+</body>
+</html>

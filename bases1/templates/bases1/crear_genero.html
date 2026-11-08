@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if genero %}Editar{% else %}Registrar{% endif %} Tipo de Música</title>
+    <link rel="stylesheet" href="{% static 'bases1/css/estilos.css' %}">
+</head>
+<body>
+    <div class="contenedor-formulario">
+        <h1>{% if genero %}Modificar Registro Musical{% else %}Nuevo Registro Musical{% endif %}</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Nombre del Tema / Álbum</label>
+                <input type="text" name="nombre_de_la_musica" value="{{ genero.nombre_de_la_musica|default:'' }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Género / Estilo (Ej: Rock, Salsa)</label>
+                <input type="text" name="tipo_de_musica" value="{{ genero.tipo_de_musica|default:'' }}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Banda o Solista Interpretante</label>
+                <input type="text" name="banda_de_musica" value="{{ genero.banda_de_musica|default:'' }}" class="form-control" required>
+            </div>
+            <button type="submit" class="btn {% if genero %}btn-editar{% else %}btn-crear{% endif %}">
+                {% if genero %}Guardar Cambios{% else %}Registrar Música{% endif %}
+            </button>
+            <a href="{% url 'bases1' %}" class="btn btn-cancelar">Volver</a>
+        </form>
+    </div>
+</body>
+</html>
